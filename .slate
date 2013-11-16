@@ -1,0 +1,57 @@
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# alias
+alias hyper ctrl;alt;cmd
+alias editor 'MacVim'
+alias terminal 'iTerm'
+alias browser 'Google Chrome'
+
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias movetop move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+alias movedown move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2
+alias movecenter move screenOriginX+screenSizeX*0.1;screenOriginY+screenSizeY*0.1 screenSizeX*0.8;screenSizeY*0.8
+
+
+# Show quick key overlays for each window
+config windowHintsShowIcons true
+config windowHintsSpread true
+config windowHintsIgnoreHiddenWindows false
+
+# Useful Windows hint and grid
+bind h:cmd;shift hint ASDFHJKLQWERTYUIOPCVBNG
+bind g:cmd;shift grid padding:5 1280x800:10,4 1920x1200:8,3
+
+# resize windows
+bind h:cmd;alt ${lefthalf}
+bind j:cmd;alt ${movedown}
+bind k:cmd;alt ${movetop}
+bind l:cmd;alt ${righthalf}
+bind f:cmd;alt ${full}
+bind c:cmd;alt ${movecenter}
+
+# move windows
+bind h:ctrl,shift nudge -5% +0
+bind j:ctrl,shift nudge +0 +5%
+bind k:ctrl,shift nudge +0 -5%
+bind l:ctrl,shift nudge +5% +0
+
+# Throw Windows between monitors
+bind h:${hyper} throw previous resize
+bind l:${hyper} throw next resize
+
+# Focus
+bind right:cmd;ctrl    focus right
+bind left:cmd;ctrl     focus left
+bind up:cmd;ctrl       focus behind
+
+
+# TODO layouts
+layout devlayout ${terminal}:MAIN_FIRST ${full} 1
+layout devlayout ${browser}:REPEAT ${full} 2
+
+bind m:${hyper} layout devlayout

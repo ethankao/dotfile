@@ -1,0 +1,27 @@
+[diff]
+  tool = vimdiff
+[merge]
+	tool = fugitive
+[difftool]
+  prompt = false
+[alias]
+  lt = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)'
+  ls = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --stat
+  lg = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --graph
+  lm = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --author=skao
+  lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  d = difftool
+  rlc = reset --hard remotes/origin/HEAD
+  up = "!git pull --rebase && git submodule update --init && git submodule sync"
+  st = status
+  br = branch
+  co = checkout
+  cob = checkout -b
+[user]
+  email = skao
+[push]
+  default = simple
+[mergetool "fugitive"]
+  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[credential]
+	helper = osxkeychain
