@@ -24,4 +24,4 @@
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [credential]
-	helper = osxkeychain
+	helper = cache
