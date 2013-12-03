@@ -1,3 +1,8 @@
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
+
 #### Setup Prompt
 MyRed="\[\033[1;31m\]"
 MyGreen="\[\033[0;36m\]"
@@ -44,9 +49,10 @@ export ANT_HOME=/opt/apache-ant-1.7.1
 
 PATH=/usr/local/bin:$ANT_HOME/bin:/usr/local/opt/ruby/bin:$GIT_HOME/bin:$SVN_HOME/bin:~/bin:$PATH:~/sdk/platform-tools:~/sdk/tools:~/.npmprefix/bin
 
-[[ -s /Users/skao/.nvm/nvm.sh ]] && . /Users/skao/.nvm/nvm.sh # This loads NVM
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 
 [[ -s "$HOME/.bash_local" ]] && source "$HOME/.bash_local"
