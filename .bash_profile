@@ -38,6 +38,7 @@ alias gr='git-review'
 alias gd='git review dcommit'
 alias mu='mint update'
 alias mt='mint test'
+alias gjs='grep --color -irn --include="*.js"'
 
 
 # path
