@@ -30,6 +30,11 @@ else
   alias ls='ls -a --color=auto'
 fi
 
+
+printJson() {
+  echo $1 | python -mjson.tool
+}
+
 alias v='vim'
 alias h='history'
 alias grep='grep --color'
@@ -38,7 +43,8 @@ alias gr='git-review'
 alias gd='git review dcommit'
 alias mu='mint update'
 alias mt='mint test'
-alias gjs='grep --color -irn --include="*.js"'
+alias gjs='grep --color -irn --include="*.js" --exclude="*public/li*"'
+alias pjson=printJson
 
 
 # path
@@ -46,7 +52,12 @@ GIT_HOME=/usr/local/Cellar/git/1.8.3.2
 SVN_HOME=/opt/subversion
 export ANT_HOME=/opt/apache-ant-1.7.1
 
+#android
+export ANDROID_HOME=~/sdk
+export ANDROID_ROOT=~/sdk
 
+export PATH=$PATH:$ANT_HOME/platform-tools
+export PATH=$PATH:$ANT_HOME/tools
 
 PATH=/usr/local/bin:$ANT_HOME/bin:/usr/local/opt/ruby/bin:$GIT_HOME/bin:$SVN_HOME/bin:~/bin:$PATH:~/sdk/platform-tools:~/sdk/tools:~/.npmprefix/bin
 

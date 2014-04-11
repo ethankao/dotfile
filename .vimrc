@@ -6,7 +6,7 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 " let Vundle manage Vundle
-" required! 
+" required!
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -88,6 +88,9 @@ set nu
 " list
 set list
 set listchars=trail:.,tab:>.,extends:>,precedes:<,nbsp:.
+
+" trim whitespace
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Syntax
 let g:syntastic_javascript_checkers = ['jshint']

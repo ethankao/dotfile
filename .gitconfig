@@ -6,6 +6,7 @@
   prompt = false
 [alias]
   lt = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)'
+  ltd = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cd) %C(cyan)<%an>%C(reset)'
   ls = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --stat
   lg = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --graph
   lm = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --author=skao
@@ -18,7 +19,7 @@
   co = checkout
   cob = checkout -b
 [user]
-  email = skao
+  email = skao@linkedin.com
 [push]
   default = simple
 [mergetool "fugitive"]
