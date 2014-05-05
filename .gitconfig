@@ -26,3 +26,5 @@
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [credential]
 	helper = cache
+[core]
+	editor = /usr/local/bin/vim
