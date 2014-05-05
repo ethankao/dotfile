@@ -53,8 +53,9 @@ SVN_HOME=/opt/subversion
 export ANT_HOME=/opt/apache-ant-1.7.1
 
 #android
-export ANDROID_HOME=~/sdk
-export ANDROID_ROOT=~/sdk
+export ANDROID_HOME=/Users/skao/sdk
+export ANDROID_ROOT=/Users/skao/sdk
+export ANDROID_SDK=/Users/skao/sdk
 
 export PATH=$PATH:$ANT_HOME/platform-tools
 export PATH=$PATH:$ANT_HOME/tools
