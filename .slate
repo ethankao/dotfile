@@ -23,7 +23,7 @@ config windowHintsSpread true
 config windowHintsIgnoreHiddenWindows false
 
 # Useful Windows hint and grid
-bind h:cmd;shift hint ASDFHJKLQWERTYUIOPCVBNG
+#bind h:cmd;shift hint ASDFHJKLQWERTYUIOPCVBNG
 bind g:cmd;shift grid padding:5 1280x800:10,4 1920x1200:8,3
 
 # resize windows

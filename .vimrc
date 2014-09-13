@@ -40,18 +40,28 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'heavenshell/vim-jsdoc'
 NeoBundle 'ethankao/vim-mocha-run'
-"NeoBundle 'marijnh/tern_for_vim', {
-      "\ 'build': {
-      "\ 'build' : {
-      "\     'mac' : 'npm install',
-      "\     'unix' : 'npm install',
-      "\    },
-      "\ }
+NeoBundle 'marijnh/tern_for_vim', {
+      \ 'build' : {
+      \     'mac' : 'npm install',
+      \     'unix' : 'npm install',
+      \    },
+      \ }
 NeoBundle 'elzr/vim-json'
 NeoBundle 'Shougo/neocomplete'
+"NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/echodoc'
-NeoBundle 'terryma/vim-multiple-cursors'
+"NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'sirver/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
+" html / css
+NeoBundle 'skammer/vim-css-color'
+
+" scala
+NeoBundle 'derekwyatt/vim-scala'
+
+" ruby
+"NeoBundle 'astashov/vim-ruby-debugger', { 'rev': 'v1.0' }
 
 " Bundle 'MarcWeber/vim-addon-mw-utils'
 " Bundle 'tomtom/tlib_vim'
@@ -94,6 +104,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Syntax
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_scala_checkers = ['fsc']
 let g:syntastic_always_populate_loc_list=1
 
 " Short Cuts
@@ -109,6 +120,7 @@ let g:airline_solarized_bg='dark'
 
 " tern
 let g:tern_map_keys=1
+set completeopt-=preview
 
 " Auto Complete
 " let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -159,3 +171,51 @@ autocmd FileType unite call s:unite_settings()
 nnoremap <space>/ :Unite -no-quit grep:.<cr>
 nnoremap <space>y :Unite history/yank<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
+
+" snippet
+let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
+function! UltiSnipsCallUnite()
+  Unite -start-insert -winheight=10 -immediately -no-empty ultisnips
+  return ''
+endfunction
+
+inoremap <silent> <F3> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
+nnoremap <silent> <F3> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+let g:UltiSnipsEditSplit="vertical"
+
+"let g:neosnippet#disable_runtime_snippets = {
+"\   '_' : 1,
+"\ }
+"" Enable snipMate compatibility feature.
+"let g:neosnippet#enable_snipmate_compatibility = 1
+
+"" Tell Neosnippet about the other snippets
+"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+"" Plugin key-mappings.
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)"
+"\: pumvisible() ? "\<C-n>" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)"
+"\: "\<TAB>"
+
+" For snippet_complete marker.
+"if has('conceal')
+  "set conceallevel=2 concealcursor=i
+"endif
+"
+let g:cssColorVimDoNotMessMyUpdatetime = 1
+
+au BufNewFile,BufRead *.scala   setlocal filetype=scala
+autocmd BufNewFile,BufRead *.pdsc set filetype=json
+
+" ruby
+"let g:ruby_debugger_progname = 'vim'
