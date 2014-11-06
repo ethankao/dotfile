@@ -3,7 +3,7 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " let Vundle manage Vundle
 " required!
@@ -75,6 +75,8 @@ NeoBundle 'derekwyatt/vim-scala'
 " Bundle 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (ie. when working on your own plugin)
 " Bundle 'file:///Users/gmarik/path/to/plugin'
+"
+call neobundle#end()
 
 filetype plugin indent on     " required!
 
@@ -216,6 +218,7 @@ let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 au BufNewFile,BufRead *.scala   setlocal filetype=scala
 autocmd BufNewFile,BufRead *.pdsc set filetype=json
+autocmd BufNewFile,BufRead *.avsc set filetype=json
 
 " ruby
 "let g:ruby_debugger_progname = 'vim'

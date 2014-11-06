@@ -49,6 +49,8 @@ alias gjs='grep --color -irn --include="*.js" --exclude="*public/li*"'
 alias pjson=printJson
 alias less='less -R'
 
+# bash
+set -o vi
 
 # path
 GIT_HOME=/usr/local/Cellar/git/1.8.3.2
@@ -71,6 +73,7 @@ else
   export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
 fi
 
+export PATH=$JAVA_HOME/bin:$PATH
 export PATH=$PATH:$ANT_HOME/platform-tools
 export PATH=$PATH:$ANT_HOME/tools
 export PATH=$PATH:/opt/scala-2.11.1/bin

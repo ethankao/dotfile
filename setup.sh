@@ -1,6 +1,8 @@
 #!/bin/bash
 
-BASEDIR=$(dirname $0)
+BASEDIR="/personal/dotfile"
+
+echo $BASEDIR
 
 mkdir -p ~/.vim/bundle
 [[ ! -s ~/.vim/bundle/neobundle.vim ]] && git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
