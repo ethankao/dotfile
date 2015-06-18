@@ -60,6 +60,10 @@ NeoBundle 'skammer/vim-css-color'
 " scala
 NeoBundle 'derekwyatt/vim-scala'
 
+"NeoBundle 'toyamarinyon/vim-swift'
+"NeoBundle 'kballard/vim-swift'
+NeoBundle 'keith/swift.vim'
+
 " ruby
 "NeoBundle 'astashov/vim-ruby-debugger', { 'rev': 'v1.0' }
 
@@ -91,7 +95,7 @@ set hlsearch
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set showmatch " show matching brackets
+set noshowmatch " show matching brackets
 " no wrap
 set textwidth=0
 set nu
@@ -106,7 +110,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Syntax
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_scala_checkers = ['fsc']
 let g:syntastic_always_populate_loc_list=1
 
 " Short Cuts
@@ -116,9 +119,15 @@ nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
 map <F2> :NERDTreeToggle<CR>
 
 " airline
-let g:airline_enable_branch=1
-let g:airline_enable_syntastic=1
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#syntastic#enabled=1
 let g:airline_solarized_bg='dark'
+
+" crtl p ignore files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](build|Pods|hudson)$'
+  \ }
 
 " tern
 let g:tern_map_keys=1
@@ -134,6 +143,10 @@ let g:neocomplete#enable_smart_case = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 " <Return> to close popup
 inoremap <expr><Return> pumvisible() ? neocomplete#close_popup() : "\<Return>"
+
+" omni commpletion
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 
 " delimitMate
 let delimitMate_expand_cr = 1
@@ -152,13 +165,15 @@ let g:unite_source_file_mru_limit = 200
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 if executable('ag')
+" unite
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='-S --nogroup --nocolor --ignore-dir fixtures'
   let g:unite_source_grep_recursive_opt=''
-elseif executable('ack')
-  let g:unite_source_grep_command='ack'
-  let g:unite_source_grep_default_opts='-a -C4'
-  let g:unite_source_grep_recursive_opt=''
+" ctrlp
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
 endif
 
 function! s:unite_settings()
@@ -216,9 +231,11 @@ let g:UltiSnipsEditSplit="vertical"
 "
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 
-au BufNewFile,BufRead *.scala   setlocal filetype=scala
+au BufNewFile,BufRead *.scala setlocal filetype=scala
 autocmd BufNewFile,BufRead *.pdsc set filetype=json
 autocmd BufNewFile,BufRead *.avsc set filetype=json
+autocmd BufNewFile,BufRead *.h setlocal filetype=objc
+autocmd BufNewFile,BufRead *.m setlocal filetype=objc
 
 " ruby
 "let g:ruby_debugger_progname = 'vim'

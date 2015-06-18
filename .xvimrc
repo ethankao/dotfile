@@ -1,0 +1,20 @@
+
+set smartcase
+
+set pasteboard
+
+" quick open
+nnoremap <C-p> :xccmd openQuickly<cr>
+
+" new tap
+nnoremap <C-w><C-t>  :xccmd newTab<cr>
+
+" navigator
+nnoremap <C-n> :xccmd toggleNavigatorsVisibility<cr>
+
+" edit all in scope
+nnoremap <C-x> :xccmd toggleTokenizedEditing<cr>
+
+" comments
+nnoremap gcc :xccmd commentAndUncommentCurrentLines<cr>
+vnoremap gc  :xccmd commentAndUncommentCurrentLines<cr>

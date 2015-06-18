@@ -24,7 +24,7 @@ config windowHintsIgnoreHiddenWindows false
 
 # Useful Windows hint and grid
 #bind h:cmd;shift hint ASDFHJKLQWERTYUIOPCVBNG
-bind g:cmd;shift grid padding:5 1280x800:10,4 1920x1200:8,3
+#bind g:cmd;shift grid padding:5 1280x800:10,4 1920x1200:8,3
 
 # resize windows
 bind h:cmd;alt ${lefthalf}

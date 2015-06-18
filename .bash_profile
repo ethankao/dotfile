@@ -48,6 +48,7 @@ alias mt='mint test'
 alias gjs='grep --color -irn --include="*.js" --exclude="*public/li*"'
 alias pjson=printJson
 alias less='less -R'
+alias ag='ag --ignore-dir ./test-integration/fixtures/ --ignore-dir ios-linkedin-v2/ios/LinkedIn/Source/PerfTools/MockData --ignore-dir ios-linkedin-v2/ios/LinkedIn/Assets/'
 
 # bash
 set -o vi
@@ -71,6 +72,7 @@ else
   export ANDROID_ROOT=/Users/skao/sdk
   export ANDROID_SDK=/Users/skao/sdk
   export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
+  export SCALA_HOME="/usr/local/Cellar/scala/2.11.4"
 fi
 
 export PATH=$JAVA_HOME/bin:$PATH
@@ -78,10 +80,12 @@ export PATH=$PATH:$ANT_HOME/platform-tools
 export PATH=$PATH:$ANT_HOME/tools
 export PATH=$PATH:/opt/scala-2.11.1/bin
 
+# pods
+export PATH=/Users/skao/.gem/ruby/2.0.0/bin/:$PATH
+
 PATH=/usr/local/bin:$JAVA_HOME/bin:$ANT_HOME/bin:/usr/local/opt/ruby/bin:$GIT_HOME/bin:$SVN_HOME/bin:~/bin:$PATH:~/sdk/platform-tools:~/sdk/tools:~/.npmprefix/bin
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 
 [[ -s "$HOME/.bash_local" ]] && source "$HOME/.bash_local"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
