@@ -23,7 +23,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'kien/ctrlp.vim'
+"NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'Shougo/unite.vim'
@@ -34,6 +34,8 @@ NeoBundle 'Shougo/vimproc.vim', {
       \    },
       \ }
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'vasconcelloslf/vim-interestingwords'
+NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 
 " javascript
@@ -100,6 +102,10 @@ set noshowmatch " show matching brackets
 set textwidth=0
 set nu
 " set rnu // rnu is slow
+
+" fzf
+nnoremap <C-p> :FZF<cr>
+
 
 " list
 set list

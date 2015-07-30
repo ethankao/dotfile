@@ -37,7 +37,13 @@ printJson() {
   echo $1 | python -mjson.tool
 }
 
+# fzf
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 alias v='vim'
+alias vf='vim $(fzf)'
+alias tmux='TERM=xterm-256color tmux'
 alias h='history'
 alias grep='grep --color'
 alias g='git'

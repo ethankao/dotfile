@@ -6,11 +6,25 @@ set pasteboard
 " quick open
 nnoremap <C-p> :xccmd openQuickly<cr>
 
-" new tap
-nnoremap <C-w><C-t>  :xccmd newTab<cr>
+" tab new
+map ,tn :xccmd newTab<CR>
+" tab close
+map ,tc :tabclose<CR>
+" tab pre
+map ,ti :xccmd selectPreviousTab<CR>
+" tab next
+map ,to :xccmd selectNextTab<CR>
 
 " navigator
-nnoremap <C-n> :xccmd toggleNavigatorsVisibility<cr>
+nnoremap <C-t><C-h> :xccmd toggleNavigatorsVisibility<cr>
+nnoremap <C-t><C-j> :xccmd toggleDebuggerVisibility<CR>
+nnoremap <C-t><C-l> :xccmd toggleUtilitiesVisibility<CR>
+nnoremap <C-t><C-k> :xccmd toggleToolbarShown<CR>
+
+" add new assistant editor
+map ,aa :xccmd addAssistantEditor<CR>
+" del one assistant editor
+map ,da :xccmd removeAssistantEditor<CR>
 
 " edit all in scope
 nnoremap <C-x> :xccmd toggleTokenizedEditing<cr>
@@ -18,3 +32,7 @@ nnoremap <C-x> :xccmd toggleTokenizedEditing<cr>
 " comments
 nnoremap gcc :xccmd commentAndUncommentCurrentLines<cr>
 vnoremap gc  :xccmd commentAndUncommentCurrentLines<cr>
+
+
+" remove whitespace
+command! TrimWhitespace :normal :%s/\s\+$//g<cr>
