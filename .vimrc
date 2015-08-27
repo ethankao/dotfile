@@ -243,5 +243,9 @@ autocmd BufNewFile,BufRead *.avsc set filetype=json
 autocmd BufNewFile,BufRead *.h setlocal filetype=objc
 autocmd BufNewFile,BufRead *.m setlocal filetype=objc
 
+" interesting worlds
+let g:brightest#highlight = {"group": "BrightestUnderline"}
+
+
 " ruby
 "let g:ruby_debugger_progname = 'vim'
