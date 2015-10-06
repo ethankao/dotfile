@@ -5,20 +5,11 @@ fi
 
 UNAME=`uname`
 
-#### Setup Prompt
-MyRed="\[\033[1;31m\]"
-MyGreen="\[\033[0;36m\]"
-ResetColor="\[\033[0m\]"
-
-# set git_prompt_start/end for bash git prompt
-GIT_PROMPT_START="${MyRed}\t${ResetColor}"
-GIT_PROMPT_END="${MyGreen}\u@\h:\w${ResetColor} $ "
-
-PS1="${GIT_PROMPT_START} ${MyGreen}\u@\h:\w${ResetColor} $ "
-
 # import bash git prompt
-__GIT_PROMPT_DIR=~/.bash-git-prompt
-. ${__GIT_PROMPT_DIR}/gitprompt.sh
+ if [ -f ~/.bash-git-prompt/gitprompt.sh ]; then
+   GIT_PROMPT_THEME=skao
+   source ~/.bash-git-prompt/gitprompt.sh
+ fi
 
 ## Aliases
 
@@ -72,12 +63,12 @@ if [[ "$UNAME" == 'Linux' ]] ; then
   export ANDROID_HOME=/home/skao/sdk
   export ANDROID_ROOT=/home/skao/sdk
   export ANDROID_SDK=/home/skao/sdk
-  export JAVA_HOME=/export/apps/jdk/JDK-1_6_0_27/
+  #export JAVA_HOME=/export/apps/jdk/JDK-1_6_0_27/
 else
   export ANDROID_HOME=/Users/skao/sdk
   export ANDROID_ROOT=/Users/skao/sdk
   export ANDROID_SDK=/Users/skao/sdk
-  export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
+  #export JAVA_HOME="`/usr/libexec/java_home -v '1.8*'`"
   export SCALA_HOME="/usr/local/Cellar/scala/2.11.4"
 fi
 
@@ -87,7 +78,7 @@ export PATH=$PATH:$ANT_HOME/tools
 export PATH=$PATH:/opt/scala-2.11.1/bin
 
 # pods
-export PATH=/Users/skao/.gem/ruby/2.0.0/bin/:$PATH
+export PATH=/Users/skao/.gem/ruby/2.0.0/bin:$PATH
 
 PATH=/usr/local/bin:$JAVA_HOME/bin:$ANT_HOME/bin:/usr/local/opt/ruby/bin:$GIT_HOME/bin:$SVN_HOME/bin:~/bin:$PATH:~/sdk/platform-tools:~/sdk/tools:~/.npmprefix/bin
 

@@ -50,6 +50,13 @@ NeoBundle 'marijnh/tern_for_vim', {
       \ }
 NeoBundle 'elzr/vim-json'
 NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Rip-Rip/clang_complete', {
+      \ 'build' : {
+      \     'mac' : 'make install',
+      \     'unix' : 'make install',
+      \    },
+      \ }
+"NeoBundle 'tokorom/clang_complete'
 "NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/echodoc'
 "NeoBundle 'terryma/vim-multiple-cursors'
@@ -65,6 +72,10 @@ NeoBundle 'derekwyatt/vim-scala'
 "NeoBundle 'toyamarinyon/vim-swift'
 "NeoBundle 'kballard/vim-swift'
 NeoBundle 'keith/swift.vim'
+
+NeoBundle 'b4winckler/vim-objc'
+
+"NeoBundle 'joonty/vdebug'
 
 " ruby
 "NeoBundle 'astashov/vim-ruby-debugger', { 'rev': 'v1.0' }
@@ -94,8 +105,8 @@ let g:solarized_termcolors=256
 
 set hlsearch
 " no tab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set noshowmatch " show matching brackets
 " no wrap
@@ -149,6 +160,11 @@ let g:neocomplete#enable_smart_case = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 " <Return> to close popup
 inoremap <expr><Return> pumvisible() ? neocomplete#close_popup() : "\<Return>"
+
+let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+if isdirectory(s:clang_library_path)
+    let g:clang_library_path=s:clang_library_path
+endif
 
 " omni commpletion
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -249,3 +265,6 @@ let g:brightest#highlight = {"group": "BrightestUnderline"}
 
 " ruby
 "let g:ruby_debugger_progname = 'vim'
+
+
+command! JLint %!python -m json.tool
