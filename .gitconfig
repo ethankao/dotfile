@@ -1,7 +1,7 @@
 [diff]
   tool = vimdiff
 [merge]
-	tool = fugitive
+  tool = fugitive
 [difftool]
   prompt = false
 [alias]
@@ -19,12 +19,12 @@
   co = checkout
   cob = checkout -b
 [user]
-  email = skao@linkedin.com
+  email = ethan.kao@gmail.com
 [push]
   default = simple
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
 [credential]
-	helper = cache
+  helper = cache
 [core]
-	editor = /usr/local/bin/vim
+  editor = /usr/local/bin/vim

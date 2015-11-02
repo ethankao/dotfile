@@ -33,6 +33,10 @@ nnoremap <C-x> :xccmd toggleTokenizedEditing<cr>
 nnoremap gcc :xccmd commentAndUncommentCurrentLines<cr>
 vnoremap gc  :xccmd commentAndUncommentCurrentLines<cr>
 
-
 " remove whitespace
 command! TrimWhitespace :normal :%s/\s\+$//g<cr>
+
+" header / source toggle
+map ,n :xccmd jumpToNextCounterpart<CR>
+
+imap jk <Esc>
