@@ -19,7 +19,8 @@
   co = checkout
   cob = checkout -b
 [user]
-  email = ethan.kao@gmail.com
+  email = skao@uber.com
+  name = Ethan Kao
 [push]
   default = simple
 [mergetool "fugitive"]
@@ -28,3 +29,11 @@
   helper = cache
 [core]
   editor = /usr/local/bin/vim
+[branch]
+  autosetuprebase = always
+[rerere]
+  enabled = true
+[url "ssh://gitolite@code.uber.internal/"]
+  insteadOf = git://code.uber.internal/
+[url "ssh://git@github.com/uber/"]
+  insteadOf = https://github.com/uber/

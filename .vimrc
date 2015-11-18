@@ -1,52 +1,52 @@
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Common Plugins =======================================================
 
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'bling/vim-airline'
+Plug 'altercation/vim-colors-solarized'
+"Plug 'freeo/vim-kalisi'
 
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'bling/vim-airline'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 nnoremap <C-p> :FZF<cr>
 
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'Raimondi/delimitMate'
-let delimitMate_expand_cr = 1
+Plug 'majutsushi/tagbar'
+Plug 'Raimondi/delimitMate'
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 map <F2> :NERDTreeToggle<CR>
 
-NeoBundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_always_populate_loc_list=1
 
-NeoBundle 'tpope/vim-sensible'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'Shougo/echodoc'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'Shougo/echodoc'
 let g:echodoc_enable_at_startup = 1
 
-NeoBundle 'Shougo/neocomplete'
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/deoplete.nvim'
+if has("nvim")
+  let g:deoplete#enable_at_startup = 1
+else
+  " Use neocomplete.
+  let g:neocomplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:neocomplete#enable_smart_case = 1
+endif
+
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 " <Return> to close popup
 inoremap <expr><Return> pumvisible() ? neocomplete#close_popup() : "\<Return>"
 
-NeoBundle 'Shougo/unite.vim'
+Plug 'Shougo/unite.vim'
 let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_winheight=10
 let g:unite_split_rule='belowright'
@@ -76,16 +76,11 @@ nnoremap <space>/ :Unite -no-quit grep:.<cr>
 nnoremap <space>y :Unite history/yank<cr>
 nnoremap <space>s :Unite -quick-match buffer<cr>
 
-NeoBundle 'Shougo/vimproc.vim', {
-\    'build' : {
-\        'mac' : 'make -f make_mac.mak',
-\        'unix' : 'make -f make_unix.mak',
-\    },
-\ }
-NeoBundle 'Shougo/vimshell.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/vimshell.vim'
 let g:vimshell_editor_command = 1
 
-NeoBundle 'sirver/ultisnips'
+Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
 function! UltiSnipsCallUnite()
   Unite -start-insert -winheight=10 -immediately -no-empty ultisnips
@@ -99,72 +94,41 @@ let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsEditSplit="vertical"
 
-NeoBundle 'vasconcelloslf/vim-interestingwords'
+Plug 'vasconcelloslf/vim-interestingwords'
 
 " javascript plugins ===================================================
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 
-NeoBundle 'elzr/vim-json', {
-\    'lazy' : 1,
-\    'autoload' : {
-\        'filetypes' : [ 'js', 'javascript', 'json' ]
-\    }
-\ }
+Plug 'elzr/vim-json', { 'for': [ 'js', 'javascript', 'json' ] }
 
-NeoBundle 'ethankao/vim-mocha-run', {
-\    'lazy' : 1,
-\    'autoload' : {
-\        'filetypes' : [ 'js', 'javascript', 'json' ]
-\    }
-\ }
+Plug 'ethankao/vim-mocha-run', { 'for': [ 'js', 'javascript', 'json' ] }
 
-NeoBundle 'heavenshell/vim-jsdoc', {
-\    'lazy' : 1,
-\    'autoload' : {
-\        'filetypes' : [ 'js', 'javascript', 'json' ]
-\    }
-\ }
+Plug 'heavenshell/vim-jsdoc', { 'for': [ 'js', 'javascript', 'json' ] }
 
-NeoBundle 'marijnh/tern_for_vim', {
-\    'lazy' : 1,
-\    'autoload' : {
-\        'filetypes' : [ 'js', 'javascript', 'json' ]
-\    },
-\    'build' : {
-\        'mac' : 'npm install',
-\        'unix' : 'npm install',
-\    }
-\ }
+Plug 'marijnh/tern_for_vim', { 'for': [ 'js', 'javascript', 'json' ], 'do': 'npm install' }
+
 let g:tern_map_keys=1
 set completeopt-=preview
 
-NeoBundle 'pangloss/vim-javascript', {
-\    'lazy' : 1,
-\    'autoload' : {
-\        'filetypes' : [ 'js', 'javascript', 'json' ]
-\    }
-\ }
+Plug 'pangloss/vim-javascript', { 'for': [ 'js', 'javascript', 'json' ] }
 
 " iOS ==================================================================
 autocmd Filetype objc setlocal ts=4 sts=4 sw=4
 
-NeoBundle 'b4winckler/vim-objc'
-NeoBundle 'keith/swift.vim'
-NeoBundle 'Rip-Rip/clang_complete', {
-\    'build' : {
-\        'mac' : 'make install',
-\        'unix' : 'make install',
-\    }
-\ }
-let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
-if isdirectory(s:clang_library_path)
-    let g:clang_library_path=s:clang_library_path
-endif
+Plug 'derekwyatt/vim-fswitch', { 'for': 'objc' }
+Plug 'b4winckler/vim-objc', { 'for': 'objc' }
+Plug 'keith/swift.vim', { 'for': 'swift' }
+Plug 'Rip-Rip/clang_complete', { 'for': [ 'objc', 'swift' ], 'do': 'make install' }
+let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+"if isdirectory(s:clang_library_path)
+    "let g:clang_library_path=s:clang_library_path
+"endif
 
-"NeoBundle 'derekwyatt/vim-scala'
-"NeoBundle 'toyamarinyon/vim-swift'
-"NeoBundle 'kballard/vim-swift'
-"NeoBundle 'terryma/vim-multiple-cursors'
-"NeoBundle 'Shougo/neosnippet'
+"Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+"Plug 'toyamarinyon/vim-swift', { 'for': 'swift' }
+"Plug 'kballard/vim-swift', { 'for': 'swift' }
+"Plug 'terryma/vim-multiple-cursors'
+"Plug 'Shougo/neosnippet'
 "let g:neosnippet#disable_runtime_snippets = {
 "\   '_' : 1,
 "\ }
@@ -180,11 +144,11 @@ endif
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)"
+"\ \<Plug>(neosnippet_expand_or_jump)"
 "\: pumvisible() ? "\<C-n>" : "\<TAB>"
 "smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)"
-"\: "\<TAB>"
+"\ \<Plug>(neosnippet_expand_or_jump)"
+"\: \<TAB>"
 
 " For snippet_complete marker.
 "if has('conceal')
@@ -192,15 +156,14 @@ endif
 "endif
 "
 
-"NeoBundle 'joonty/vdebug'
-"NeoBundle 'astashov/vim-ruby-debugger', { 'rev': 'v1.0' }
+"Plug 'joonty/vdebug'
+"Plug 'astashov/vim-ruby-debugger', { 'rev': 'v1.0' }
 
-call neobundle#end()
+call plug#end()
 
 filetype plugin indent on     " required!
 " preference
 syntax enable
-set background=dark
 set hlsearch
 " no tab
 set shiftwidth=2
@@ -211,13 +174,26 @@ set noshowmatch " show matching brackets
 set textwidth=0
 set nu
 " set rnu // rnu is slow
+" menu completion
+set wildmode=longest,list
+set wildmenu
 
+if has("nvim")
+  set clipboard=unnamedplus
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  set ttimeout
+  set ttimeoutlen=0
+endif
+
+set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#syntastic#enabled=1
 let g:airline_solarized_bg='dark'
+
+let g:python_host_prog = '/usr/bin/python'
 
 " list
 set list
