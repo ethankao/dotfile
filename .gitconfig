@@ -1,5 +1,7 @@
 [diff]
-  tool = vimdiff
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = "nvim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
 [merge]
   tool = fugitive
 [difftool]
@@ -24,11 +26,11 @@
 [push]
   default = simple
 [mergetool "fugitive"]
-  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [credential]
   helper = cache
 [core]
-  editor = /usr/local/bin/vim
+  editor = /usr/local/bin/nvim
 [branch]
   autosetuprebase = always
 [rerere]

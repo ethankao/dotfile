@@ -39,4 +39,8 @@ command! TrimWhitespace :normal :%s/\s\+$//g<cr>
 " header / source toggle
 map ,n :xccmd jumpToNextCounterpart<CR>
 
+" jump to issues
+nmap ]] :xcmenucmd Jump to Next Issue<cr>
+nmap [[ :xcmenucmd Jump to Previous Issue<cr>
+
 imap jk <Esc>

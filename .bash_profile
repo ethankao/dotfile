@@ -48,7 +48,8 @@ alias less='less -R'
 alias ag='ag --ignore-dir ./test-integration/fixtures/ --ignore-dir ios-linkedin-v2/ios/LinkedIn/Source/PerfTools/MockData --ignore-dir ios-linkedin-v2/ios/LinkedIn/Assets/'
 alias ad='arc diff'
 alias al='arc land'
-alias pod_old='pod _0.37.1_'
+alias o='open *.xcworkspace'
+
 
 # bash
 set -o vi
@@ -97,3 +98,4 @@ PATH=/usr/local/bin:$JAVA_HOME/bin:$ANT_HOME/bin:/usr/local/opt/ruby/bin:$GIT_HO
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+

@@ -2,17 +2,22 @@ call plug#begin('~/.vim/plugged')
 
 " Common Plugins =======================================================
 
-Plug 'altercation/vim-colors-solarized'
-"Plug 'freeo/vim-kalisi'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'freeo/vim-kalisi'
 
 Plug 'bling/vim-airline'
+Plug 'rhysd/clever-f.vim'
+Plug 'rhysd/clever-f.vim'
+
+Plug 'sjl/gundo.vim'
+nnoremap <F5> :GundoToggle<CR>
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 nnoremap <C-p> :FZF<cr>
 
 Plug 'majutsushi/tagbar'
 Plug 'Raimondi/delimitMate'
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+let delimitMate_expand_cr = 1
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -29,22 +34,24 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'Shougo/echodoc'
 let g:echodoc_enable_at_startup = 1
+set cmdheight=2
 
-Plug 'Shougo/neocomplete'
-Plug 'Shougo/deoplete.nvim'
 if has("nvim")
+  Plug 'Shougo/deoplete.nvim'
   let g:deoplete#enable_at_startup = 1
 else
+  Plug 'Shougo/neocomplete'
   " Use neocomplete.
   let g:neocomplete#enable_at_startup = 1
   " Use smartcase.
   let g:neocomplete#enable_smart_case = 1
+
+  " <Return> to close popup
+  inoremap <expr><Return> pumvisible() ? neocomplete#close_popup() : "\<Return>"
 endif
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
-" <Return> to close popup
-inoremap <expr><Return> pumvisible() ? neocomplete#close_popup() : "\<Return>"
 
 Plug 'Shougo/unite.vim'
 let g:unite_data_directory='~/.vim/.cache/unite'
@@ -118,8 +125,9 @@ autocmd Filetype objc setlocal ts=4 sts=4 sw=4
 Plug 'derekwyatt/vim-fswitch', { 'for': 'objc' }
 Plug 'b4winckler/vim-objc', { 'for': 'objc' }
 Plug 'keith/swift.vim', { 'for': 'swift' }
-Plug 'Rip-Rip/clang_complete', { 'for': [ 'objc', 'swift' ], 'do': 'make install' }
+"Plug 'Rip-Rip/clang_complete', { 'for': [ 'objc', 'swift' ], 'do': 'make install' }
 let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+
 "if isdirectory(s:clang_library_path)
     "let g:clang_library_path=s:clang_library_path
 "endif
@@ -186,14 +194,19 @@ if has("nvim")
 endif
 
 set background=dark
-colorscheme solarized
-let g:solarized_termcolors=256
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#syntastic#enabled=1
-let g:airline_solarized_bg='dark'
+colorscheme kalisi
 
-let g:python_host_prog = '/usr/bin/python'
+"let g:solarized_termcolors=256
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"let g:airline#extensions#branch#enabled=1
+"let g:airline#extensions#syntastic#enabled=1
+"let g:airline_solarized_bg='dark'
+
+"let g:airline_theme='kalisi'
+
+
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " list
 set list
