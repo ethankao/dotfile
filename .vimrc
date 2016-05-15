@@ -39,6 +39,11 @@ set cmdheight=2
 if has("nvim")
   Plug 'Shougo/deoplete.nvim'
   let g:deoplete#enable_at_startup = 1
+
+  "Plug 'justmao945/vim-clang'
+  "Plug 'zchee/deoplete-clang'
+  "let g:deoplete#sources#clang#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+  "let g:deoplete#sources#clang#clang_heade='/Library/Developer/CommandLineTools/usr/lib/clang/7.3.0/include/'
 else
   Plug 'Shougo/neocomplete'
   " Use neocomplete.
@@ -48,6 +53,13 @@ else
 
   " <Return> to close popup
   inoremap <expr><Return> pumvisible() ? neocomplete#close_popup() : "\<Return>"
+
+  "Plug 'Rip-Rip/clang_complete', { 'for': [ 'objc', 'swift' ], 'do': 'make install' }
+  "let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+
+  "if isdirectory(s:clang_library_path)
+  "let g:clang_library_path=s:clang_library_path
+  "endif
 endif
 
 " <TAB>: completion.
@@ -88,7 +100,7 @@ Plug 'Shougo/vimshell.vim'
 let g:vimshell_editor_command = 1
 
 Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
-let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
+let g:UltiSnipsSnippetsDir="~/.vim/plugged/vim-snippets/UltiSnips"
 function! UltiSnipsCallUnite()
   Unite -start-insert -winheight=10 -immediately -no-empty ultisnips
   return ''
@@ -125,12 +137,6 @@ autocmd Filetype objc setlocal ts=4 sts=4 sw=4
 Plug 'derekwyatt/vim-fswitch', { 'for': 'objc' }
 Plug 'b4winckler/vim-objc', { 'for': 'objc' }
 Plug 'keith/swift.vim', { 'for': 'swift' }
-"Plug 'Rip-Rip/clang_complete', { 'for': [ 'objc', 'swift' ], 'do': 'make install' }
-let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-
-"if isdirectory(s:clang_library_path)
-    "let g:clang_library_path=s:clang_library_path
-"endif
 
 "Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 "Plug 'toyamarinyon/vim-swift', { 'for': 'swift' }
