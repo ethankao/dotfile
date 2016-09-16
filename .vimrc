@@ -4,9 +4,9 @@ call plug#begin('~/.vim/plugged')
 
 "Plug 'altercation/vim-colors-solarized'
 Plug 'freeo/vim-kalisi'
+Plug 'rakr/vim-one'
 
 Plug 'bling/vim-airline'
-Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/clever-f.vim'
 
 Plug 'sjl/gundo.vim'
@@ -26,6 +26,10 @@ map <F2> :NERDTreeToggle<CR>
 Plug 'scrooloose/syntastic'
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_always_populate_loc_list=1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:syntastic_swift_checkers = ['swiftlint']
+let g:syntastic_swift_swiftlint_use_defaults=1
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
@@ -40,6 +44,8 @@ if has("nvim")
   Plug 'Shougo/deoplete.nvim'
   let g:deoplete#enable_at_startup = 1
 
+  "Plug 'landaire/deoplete-swift'
+  Plug 'mitsuse/autocomplete-swift'
   "Plug 'justmao945/vim-clang'
   "Plug 'zchee/deoplete-clang'
   "let g:deoplete#sources#clang#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
@@ -64,6 +70,8 @@ endif
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
+
+Plug 'pelodelfuego/vim-swoop'
 
 Plug 'Shougo/unite.vim'
 let g:unite_data_directory='~/.vim/.cache/unite'
@@ -133,10 +141,31 @@ Plug 'pangloss/vim-javascript', { 'for': [ 'js', 'javascript', 'json' ] }
 
 " iOS ==================================================================
 autocmd Filetype objc setlocal ts=4 sts=4 sw=4
+autocmd Filetype swift setlocal ts=4 sts=4 sw=4
 
 Plug 'derekwyatt/vim-fswitch', { 'for': 'objc' }
 Plug 'b4winckler/vim-objc', { 'for': 'objc' }
 Plug 'keith/swift.vim', { 'for': 'swift' }
+
+" GO ==================================================================
+autocmd Filetype go setlocal ts=2 sts=2 sw=2
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
+Plug 'fatih/vim-go', { 'for': 'go' }
+"Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+let g:go_fmt_autosave = 0
+let g:go_list_type = "quickfix"
 
 "Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 "Plug 'toyamarinyon/vim-swift', { 'for': 'swift' }
@@ -194,13 +223,24 @@ set wildmenu
 
 if has("nvim")
   set clipboard=unnamedplus
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   set ttimeout
   set ttimeoutlen=0
 endif
 
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
 set background=dark
-colorscheme kalisi
+colorscheme one
 
 "let g:solarized_termcolors=256
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -235,6 +275,7 @@ autocmd BufNewFile,BufRead *.pdsc set filetype=json
 autocmd BufNewFile,BufRead *.avsc set filetype=json
 autocmd BufNewFile,BufRead *.h setlocal filetype=objc
 autocmd BufNewFile,BufRead *.m setlocal filetype=objc
+autocmd BufNewFile,BufRead *.mm setlocal filetype=objc
 
 " interesting worlds
 let g:brightest#highlight = {"group": "BrightestUnderline"}
