@@ -15,7 +15,7 @@
   lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   d = difftool
   rlc = reset --hard remotes/origin/HEAD
-  up = "!git pull --rebase && git submodule update --init && git submodule sync"
+  re = rebase master
   st = status
   br = branch
   co = checkout
@@ -31,6 +31,7 @@
   helper = cache
 [core]
   editor = /usr/local/bin/nvim
+	excludesfile = /Users/skao/.gitignore_global
 [branch]
   autosetuprebase = always
 [rerere]
@@ -39,3 +40,13 @@
   insteadOf = git://code.uber.internal/
 [url "ssh://git@github.com/uber/"]
   insteadOf = https://github.com/uber/
+[commit]
+  template = ~/.commit_template
+[url "ssh://gitolite@code.uber.internal:2222/"]
+	insteadOf = https://code.uber.internal/
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
