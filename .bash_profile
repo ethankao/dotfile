@@ -38,17 +38,11 @@ alias tmux='TERM=xterm-256color tmux'
 alias h='history'
 alias grep='grep --color'
 alias g='git'
-alias gr='git-review'
-alias gd='git review dcommit'
-alias mu='mint update'
-alias mt='mint test'
 alias gjs='grep --color -irn --include="*.js" --exclude="*public/li*"'
 alias pjson=printJson
 alias less='less -R'
-alias ag='ag --ignore-dir ./test-integration/fixtures/ --ignore-dir ios-linkedin-v2/ios/LinkedIn/Source/PerfTools/MockData --ignore-dir ios-linkedin-v2/ios/LinkedIn/Assets/'
 alias ad='arc diff'
 alias al='arc land'
-alias o='open *.xcworkspace'
 
 
 # bash
@@ -98,6 +92,9 @@ PATH=/usr/local/bin:$JAVA_HOME/bin:$ANT_HOME/bin:/usr/local/opt/ruby/bin:$GIT_HO
 
 [[ -s "$HOME/.bash_local" ]] && source "$HOME/.bash_local"
 
-
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+export HOMEBREW_NO_SANDBOX=1
+export PATH=/usr/local/opt/python/libexec/bin:/Users/skao/.rbenv/shims:/usr/local/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/bin:/opt/apache-ant-1.7.1/bin:/usr/local/opt/ruby/bin:/usr/local/Cellar/git/1.8.3.2/bin:/opt/subversion/bin:/Users/skao/bin:/Users/skao/.gem/ruby/2.0.0/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/bin:/usr/local/Cellar/maven/3.3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/Users/skao/.rvm/bin:/Users/skao/.fzf/bin:/opt/apache-ant-1.7.1/platform-tools:/opt/apache-ant-1.7.1/tools:/opt/scala-2.11.1/bin:/Users/skao/.go/bin:/usr/local/opt/go/libexec//bin:/Users/skao/sdk/platform-tools:/Users/skao/sdk/tools:/Users/skao/.npmprefix/bin:/usr/local/sbin:/Users/skao/.rbenv/shims
+
+nvm use default

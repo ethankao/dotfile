@@ -34,6 +34,10 @@ map <F2> :NERDTreeFind<CR>
 "let g:syntastic_swift_swiftlint_use_defaults=1
 
 Plug 'w0rp/ale'
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'swift': ['swiftlint'],
+\}
 
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -54,11 +58,16 @@ let g:echodoc_enable_at_startup = 1
 set cmdheight=2
 
 if has("nvim")
-  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
 
   "Plug 'landaire/deoplete-swift'
   Plug 'mitsuse/autocomplete-swift'
+
+  "autocomplete_swift#use_toolchain('Swift_2_3')
+
+  autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
+
   "Plug 'justmao945/vim-clang'
   "Plug 'zchee/deoplete-clang'
   "let g:deoplete#sources#clang#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
@@ -137,7 +146,7 @@ let g:UltiSnipsEditSplit="vertical"
 Plug 'vasconcelloslf/vim-interestingwords'
 
 " javascript plugins ===================================================
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
 Plug 'elzr/vim-json', { 'for': [ 'js', 'javascript', 'json' ] }
 
@@ -181,8 +190,8 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 "Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 "let g:go_fmt_autosave = 0
 "let g:go_list_type = "quickfix"
-let g:go_term_mode = "split"
-let g:go_term_enabled = 1
+"let g:go_term_mode = "split"
+"let g:go_term_enabled = 1
 
 "Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 "Plug 'toyamarinyon/vim-swift', { 'for': 'swift' }
@@ -239,7 +248,7 @@ set wildmode=longest,list
 set wildmenu
 
 if has("nvim")
-  set clipboard=unnamedplus
+  set clipboard+=unnamedplus
   set ttimeout
   set ttimeoutlen=0
 endif
