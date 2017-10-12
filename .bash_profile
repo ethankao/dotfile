@@ -38,7 +38,7 @@ alias tmux='TERM=xterm-256color tmux'
 alias h='history'
 alias grep='grep --color'
 alias g='git'
-alias gjs='grep --color -irn --include="*.js" --exclude="*public/li*"'
+alias grm='git rebase master'
 alias pjson=printJson
 alias less='less -R'
 alias ad='arc diff'

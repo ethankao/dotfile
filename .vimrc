@@ -97,7 +97,7 @@ Plug 'pelodelfuego/vim-swoop'
 
 Plug 'Shougo/unite.vim'
 let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_winheight=10
+let g:unite_winheight=40
 let g:unite_split_rule='belowright'
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
@@ -292,6 +292,9 @@ autocmd BufNewFile,BufRead *.avsc set filetype=json
 autocmd BufNewFile,BufRead *.h setlocal filetype=objc
 autocmd BufNewFile,BufRead *.m setlocal filetype=objc
 autocmd BufNewFile,BufRead *.mm setlocal filetype=objc
+
+" open quick fix after grep
+autocmd QuickFixCmdPost *grep* cwindow
 
 " interesting worlds
 let g:brightest#highlight = {"group": "BrightestUnderline"}
