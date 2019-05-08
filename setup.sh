@@ -19,4 +19,9 @@ ln -s $BASEDIR/bash-git-prompt ~/.bash-git-prompt
 ln -s $BASEDIR/.ant.properties ~/.ant.properties
 
 
+defaults write com.apple.universalaccess slowKey -int 0 # Disable Slow Keys.
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool FALSE # Disable Press-And-Hold for keys.
+defaults write NSGlobalDomain InitialKeyRepeat -int 10 # Set key repeat triggering delay to even shorter.
+defaults write NSGlobalDomain KeyRepeat -int 3 # Set key repeat rate to even faster.
+
 # if it's linux do the following
