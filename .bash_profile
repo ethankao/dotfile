@@ -5,8 +5,10 @@ fi
 
 UNAME=`uname`
 
-# import bash git prompt
+## import bash git prompt
  if [ -f ~/.bash-git-prompt/gitprompt.sh ]; then
+   GIT_PROMPT_FETCH_REMOTE_STATUS=0
+   GIT_PROMPT_IGNORE_SUBMODULES=1
    GIT_PROMPT_THEME=skao
    source ~/.bash-git-prompt/gitprompt.sh
  fi
@@ -80,6 +82,7 @@ export GOPATH=$HOME/.go
 export GOROOT=/usr/local/opt/go/libexec/
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:/work/depot_tools
 
 # pods
 export PATH=/Users/skao/.gem/ruby/2.0.0/bin:$PATH
@@ -95,6 +98,11 @@ PATH=/usr/local/bin:$JAVA_HOME/bin:$ANT_HOME/bin:/usr/local/opt/ruby/bin:$GIT_HO
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export HOMEBREW_NO_SANDBOX=1
-export PATH=/usr/local/opt/python/libexec/bin:/Users/skao/.rbenv/shims:/usr/local/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/bin:/opt/apache-ant-1.7.1/bin:/usr/local/opt/ruby/bin:/usr/local/Cellar/git/1.8.3.2/bin:/opt/subversion/bin:/Users/skao/bin:/Users/skao/.gem/ruby/2.0.0/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/bin:/usr/local/Cellar/maven/3.3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/Users/skao/.rvm/bin:/Users/skao/.fzf/bin:/opt/apache-ant-1.7.1/platform-tools:/opt/apache-ant-1.7.1/tools:/opt/scala-2.11.1/bin:/Users/skao/.go/bin:/usr/local/opt/go/libexec//bin:/Users/skao/sdk/platform-tools:/Users/skao/sdk/tools:/Users/skao/.npmprefix/bin:/usr/local/sbin:/Users/skao/.rbenv/shims
+export PATH=$PATH:/usr/local/opt/python/libexec/bin:/Users/skao/.rbenv/shims:/usr/local/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/bin:/opt/apache-ant-1.7.1/bin:/usr/local/opt/ruby/bin:/usr/local/Cellar/git/1.8.3.2/bin:/opt/subversion/bin:/Users/skao/bin:/Users/skao/.gem/ruby/2.0.0/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/bin:/usr/local/Cellar/maven/3.3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/munki:/Users/skao/.rvm/bin:/Users/skao/.fzf/bin:/opt/apache-ant-1.7.1/platform-tools:/opt/apache-ant-1.7.1/tools:/opt/scala-2.11.1/bin:/Users/skao/.go/bin:/usr/local/opt/go/libexec//bin:/Users/skao/sdk/platform-tools:/Users/skao/sdk/tools:/Users/skao/.npmprefix/bin:/usr/local/sbin:/Users/skao/.rbenv/shims
 
-nvm use default
+#nvm use default
+brew analytics off 2>&1 >/dev/null
+
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"

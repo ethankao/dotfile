@@ -38,6 +38,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'swift': ['swiftlint'],
 \}
+let b:ale_fixers = ['eslint']
 
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -169,6 +170,9 @@ Plug 'derekwyatt/vim-fswitch', { 'for': 'objc' }
 Plug 'b4winckler/vim-objc', { 'for': 'objc' }
 Plug 'keith/swift.vim', { 'for': 'swift' }
 
+" Markdown ==================================================================
+
+
 " GO ==================================================================
 autocmd FileType go setlocal ts=2 sts=2 sw=2 nolist
 
@@ -188,6 +192,7 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 
 Plug 'fatih/vim-go', { 'for': 'go' }
 "Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+let g:go_fmt_command = "goimports"
 "let g:go_fmt_autosave = 0
 "let g:go_list_type = "quickfix"
 "let g:go_term_mode = "split"
@@ -237,7 +242,6 @@ set hlsearch
 " no tab
 set shiftwidth=2
 set softtabstop=2
-set expandtab
 set noshowmatch " show matching brackets
 " no wrap
 set textwidth=0
@@ -262,12 +266,12 @@ colorscheme NeoSolarized
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "let g:airline#extensions#branch#enabled=1
 "let g:airline#extensions#syntastic#enabled=1
-"let g:airline_solarized_bg='dark'
+"let g:airline_solarized_bg='light'
 
 "let g:airline_theme='kalisi'
 
 
-let g:python_host_prog = '/usr/local/bin/python'
+let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " list
@@ -299,6 +303,6 @@ autocmd QuickFixCmdPost *grep* cwindow
 " interesting worlds
 let g:brightest#highlight = {"group": "BrightestUnderline"}
 
-command! JLint %!python -m json.tool
 imap jk <Esc>
 set expandtab
+" command! JLint %!python -m json.tool
