@@ -1,0 +1,9 @@
+alias ls='ls -a'
+alias v='vim'
+alias tmux='TERM=xterm-256color tmux'
+alias h='history'
+alias grep='grep --color'
+alias g='git'
+alias grm='git rebase master'
+alias pjson=printJson
+alias less='less -R'

@@ -1,0 +1,57 @@
+set nocompatible
+
+let g:python3_host_prog = '/usr/bin/python3'
+
+so ~/.vimrc.plugins
+
+" theme
+syntax enable
+set termguicolors
+set background=dark
+colorscheme solarized8
+
+filetype plugin indent on     " required!
+" preference
+set hlsearch
+" no tab
+set shiftwidth=2
+set softtabstop=2
+set noshowmatch " show matching brackets
+" no wrap
+set textwidth=0
+set nu
+" set rnu // rnu is slow
+" menu completion
+set wildmode=longest,list
+set wildmenu
+
+" list
+set list
+set listchars=trail:.,tab:>.,extends:>,precedes:<,nbsp:.
+
+" trim whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
+set clipboard=unnamed
+
+" Short Cuts
+" Jump Between Errors
+" Replace command
+nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
+
+au BufNewFile,BufRead *.scala setlocal filetype=scala
+autocmd BufNewFile,BufRead *.pdsc set filetype=json
+autocmd BufNewFile,BufRead *.avsc set filetype=json
+autocmd BufNewFile,BufRead *.h setlocal filetype=objc
+autocmd BufNewFile,BufRead *.m setlocal filetype=objc
+autocmd BufNewFile,BufRead *.mm setlocal filetype=objc
+
+" open quick fix after grep
+autocmd QuickFixCmdPost *grep* cwindow
+
+" interesting worlds
+let g:brightest#highlight = {"group": "BrightestUnderline"}
+
+imap jk <Esc>
+set expandtab
+" command! JLint %!python -m json.tool

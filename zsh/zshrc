@@ -1,0 +1,37 @@
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/ekao/.oh-my-zsh"
+
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="frisk"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+plugins=()
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+#
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# fzf
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+if [ -f ~/.zsh_alias ]; then
+  . ~/.zsh_alias
+fi
+
+if [ -f ~/.zsh_functions ]; then
+  . ~/.zsh_functions
+fi

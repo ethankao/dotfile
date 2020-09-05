@@ -1,27 +1,23 @@
 #!/bin/bash
 
-BASEDIR="/personal/dotfile"
+BASEDIR=$( cd "$( dirname "$0" )" && pwd )
 
 echo $BASEDIR
 
-mkdir -p ~/.vim/bundle
-[[ ! -s ~/.vim/bundle/neobundle.vim ]] && git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-
-mkdir -p ~/.config/nvim
-ln -s $BASEDIR/.bash_functions ~/.bash_functions
-ln -s $BASEDIR/.bash_profile ~/.bash_profile
-ln -s $BASEDIR/.bash_local ~/.bash_local
-ln -s $BASEDIR/.gitconfig ~/.gitconfig
-ln -s $BASEDIR/.slate ~/.slate
-ln -s $BASEDIR/.vimrc ~/.vimrc
-ln -s $BASEDIR/.vimrc ~/.config/nvim/init.vim
-ln -s $BASEDIR/bash-git-prompt ~/.bash-git-prompt
-ln -s $BASEDIR/.ant.properties ~/.ant.properties
+ln -s $BASEDIR/zsh/zshrc ~/.zshrc
+ln -s $BASEDIR/zsh/zsh_alias ~/.zsh_alias
+ln -s $BASEDIR/zsh/zsh_functions ~/.zsh_functions
+mkdir ~/.hammerspoon
+ln -s $BASEDIR/.hammerspoon/init.lua ~/.hammerspoon/init.lua
+ln -s $BASEDIR/vim/vimrc ~/.vimrc
+ln -s $BASEDIR/vim/vimrc.plugins ~/.vimrc.plugins
+ln -s $BASEDIR/vim/xvimrc ~/.xvimrc
+ln -s $BASEDIR/git/gitconfig ~/.gitconfig
+# ln -s $BASEDIR/tmux/tmux.config ~/.tmux.config
 
 
-defaults write com.apple.universalaccess slowKey -int 0 # Disable Slow Keys.
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool FALSE # Disable Press-And-Hold for keys.
-defaults write NSGlobalDomain InitialKeyRepeat -int 10 # Set key repeat triggering delay to even shorter.
-defaults write NSGlobalDomain KeyRepeat -int 3 # Set key repeat rate to even faster.
-
-# if it's linux do the following
+# keyboard repeat rate.
+# sudo defaults write com.apple.universalaccess slowKey -int 0 # Disable Slow Keys.
+# defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool FALSE # Disable Press-And-Hold for keys.
+# defaults write NSGlobalDomain InitialKeyRepeat -int 10 # Set key repeat triggering delay to even shorter.
+# defaults write NSGlobalDomain KeyRepeat -int 3 # Set key repeat rate to even faster.

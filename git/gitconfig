@@ -1,7 +1,7 @@
 [diff]
-  tool = nvimdiff
+  tool = vimdiff
 [difftool "nvimdiff"]
-  cmd = "nvim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
+  cmd = "vim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
 [merge]
   tool = fugitive
 [difftool]
@@ -30,36 +30,6 @@
 [credential]
   helper = cache
 [core]
-  editor = /usr/local/bin/nvim
-	excludesfile = /Users/skao/.gitignore_global
+  editor = vim
 [branch]
   autosetuprebase = always
-[rerere]
-  enabled = true
-[url "ssh://gitolite@code.uber.internal/"]
-  insteadOf = git://code.uber.internal/
-[url "ssh://git@github.com/uber/"]
-  insteadOf = https://github.com/uber/
-[commit]
-  template = ~/.commit_template
-[url "ssh://gitolite@code.uber.internal:2222/"]
-	insteadOf = https://code.uber.internal/
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[url "ssh://code.uber.internal/"]
-	insteadOf = https://code.uber.internal/
-[url "ssh://config.uber.internal/"]
-	insteadOf = https://config.uber.internal/
-[http "https://gopkg.uberinternal.com"]
-	followRedirects = true
-[http "https://gopkg.in"]
-	followRedirects = true
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
