@@ -23,6 +23,7 @@ source $ZSH/oh-my-zsh.sh
 #
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+export EDITOR=vim
 
 # fzf
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
@@ -35,3 +36,9 @@ fi
 if [ -f ~/.zsh_functions ]; then
   . ~/.zsh_functions
 fi
+
+if [ -f ~/.zsh_local ]; then
+  . ~/.zsh_local
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -38,6 +38,8 @@ nnoremap <C-p> :FZF<cr>
 " Multiple buffers search and replace
 Plug 'pelodelfuego/vim-swoop'
 
+Plug 'jparise/vim-graphql'
+
 "Plug 'Shougo/unite.vim'
 "let g:unite_data_directory='~/.vim/.cache/unite'
 "let g:unite_winheight=40
@@ -75,11 +77,14 @@ let delimitMate_expand_cr = 1
 
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'prettier'],
 \   'swift': ['swiftlint'],
 \}
-let b:ale_fixers = ['eslint']
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_fix_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -99,7 +104,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
 let g:deoplete#enable_at_startup = 1
 
 " <TAB>: completion.
@@ -131,6 +135,9 @@ autocmd Filetype swift setlocal ts=4 sts=4 sw=4
 Plug 'derekwyatt/vim-fswitch', { 'for': 'objc' }
 Plug 'b4winckler/vim-objc', { 'for': 'objc' }
 Plug 'keith/swift.vim', { 'for': 'swift' }
+
+" Kotlin ==================================================================
+Plug 'udalov/kotlin-vim', { 'for': 'kt' }
 
 " GO ==================================================================
 autocmd FileType go setlocal ts=2 sts=2 sw=2 nolist

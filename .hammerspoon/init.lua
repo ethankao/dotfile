@@ -16,7 +16,7 @@ hs.hotkey.bind({"cmd", "alt"}, "C", function()
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.w * 0.1
+  f.x = max.x + max.w * 0.1
   f.y = max.h * 0.1
   f.w = max.w * 0.8
   f.h = max.h * 0.8
@@ -81,13 +81,15 @@ end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "H", function()
   local win = hs.window.focusedWindow()
-  win:moveOneScreenWest()
+  screen = hs.screen.find({x=0, y=0})
+  win:moveToScreen(screen)
   win:maximize()
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
   local win = hs.window.focusedWindow()
-  win:moveOneScreenEast()
+  screen = hs.screen.find({x=1, y=0})
+  win:moveToScreen(screen)
   win:maximize()
 end)
 
