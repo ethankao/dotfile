@@ -1,6 +1,6 @@
 [diff]
   tool = vimdiff
-[difftool "nvimdiff"]
+[difftool "vimdiff"]
   cmd = "vim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
 [merge]
   tool = fugitive
@@ -9,9 +9,10 @@
 [alias]
   lt = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)'
   ltd = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cd) %C(cyan)<%an>%C(reset)'
+  ltdt = log --format='%C(yellow)%h%C(reset) %s %C(green)(%cd) %C(cyan)<%an>%C(reset)'
   ls = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --stat
   lg = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --graph
-  lm = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --author=skao
+  lm = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)' --author=ekao
   lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   d = difftool
   rlc = reset --hard remotes/origin/HEAD
@@ -21,15 +22,27 @@
   co = checkout
   cob = checkout -b
 [user]
-  email = skao@uber.com
-  name = Ethan Kao
+	name = Ethan Kao
+	email = ethan.kao@gmail.com
 [push]
   default = simple
 [mergetool "fugitive"]
-  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+  cmd = vim -f -c 'set diffopt+=iwhite' -c \"Gdiff\" \"$MERGED\"
 [credential]
   helper = cache
 [core]
   editor = vim
+	pager = less -F -X
+	excludesfile = /Users/ekao/.gitignore_global
 [branch]
   autosetuprebase = always
+[diff "localizablestrings"]
+  textconv = "iconv -f utf-16 -t utf-8"
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+  template = /Users/ekao/.stCommitMsg
