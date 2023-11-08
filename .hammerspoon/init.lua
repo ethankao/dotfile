@@ -81,15 +81,14 @@ end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "H", function()
   local win = hs.window.focusedWindow()
-  screen = hs.screen.find({x=0, y=0})
-  win:moveToScreen(screen)
+  win:moveToScreen(hs.screen.primaryScreen())
   win:maximize()
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
   local win = hs.window.focusedWindow()
-  screen = hs.screen.find({x=1, y=0})
-  win:moveToScreen(screen)
+  screen = hs.screen.find({x=0, y=0})
+  win:moveToScreen(hs.screen.allScreens()[2])
   win:maximize()
 end)
 
