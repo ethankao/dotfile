@@ -9,6 +9,7 @@ ln -s $BASEDIR/zsh/zsh_alias ~/.zsh_alias
 ln -s $BASEDIR/zsh/zsh_functions ~/.zsh_functions
 mkdir ~/.hammerspoon
 ln -s $BASEDIR/.hammerspoon/init.lua ~/.hammerspoon/init.lua
+ln -s $BASEDIR/.hammerspoon/window_management.lua ~/.hammerspoon/window_management.lua
 ln -s $BASEDIR/vim/vimrc ~/.vimrc
 ln -s $BASEDIR/vim/vimrc.plugins ~/.vimrc.plugins
 ln -s $BASEDIR/vim/xvimrc ~/.xvimrc

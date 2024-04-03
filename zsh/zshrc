@@ -3,7 +3,7 @@ export DISABLE_MAGIC_FUNCTIONS=true
 export ZSH="/Users/ekao/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="frisk"
+ZSH_THEME="intheloop"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -43,6 +43,3 @@ if [ -f ~/.zsh_local ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-source /Users/ekao/.docker/init-zsh.sh || true # Added by Docker Desktop
-export PATH="/usr/local/opt/jpeg/bin:$PATH"
