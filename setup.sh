@@ -16,9 +16,10 @@ ln -s $BASEDIR/vim/xvimrc ~/.xvimrc
 ln -s $BASEDIR/git/gitconfig ~/.gitconfig
 # ln -s $BASEDIR/tmux/tmux.config ~/.tmux.config
 
-
 # keyboard repeat rate.
-# sudo defaults write com.apple.universalaccess slowKey -int 0 # Disable Slow Keys.
-# defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool FALSE # Disable Press-And-Hold for keys.
-# defaults write NSGlobalDomain InitialKeyRepeat -int 10 # Set key repeat triggering delay to even shorter.
-# defaults write NSGlobalDomain KeyRepeat -int 3 # Set key repeat rate to even faster.
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write com.apple.Accessibility KeyRepeatDelay 0.166666666
+defaults write com.apple.Accessibility KeyRepeatEnabled 1
+defaults write com.apple.Accessibility KeyRepeatInterval 0.016666666
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 10

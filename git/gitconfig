@@ -1,11 +1,11 @@
 [diff]
-  tool = vimdiff
+    tool = vimdiff
 [difftool "vimdiff"]
-  cmd = "vim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
+    cmd = "vim -d -u ~/.vimrc \"$LOCAL\" \"$REMOTE\""
 [merge]
-  tool = fugitive
+    tool = fugitive
 [difftool]
-  prompt = false
+    prompt = false
 [alias]
   lt = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(reset)'
   ltd = log --format='%C(yellow)%h%C(reset) -%C(red bold)%d%C(reset) %s %C(green)(%cd) %C(cyan)<%an>%C(reset)'
@@ -24,27 +24,27 @@
   find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
   show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
 [user]
-	name = Ethan Kao
-	email = ethan.kao@gmail.com
+    name = Ethan Kao
+    email = ethan.kao@gmail.com
 [push]
-  default = simple
+    default = simple
 [mergetool "fugitive"]
-  cmd = vim -f -c 'set diffopt+=iwhite' -c \"Gdiff\" \"$MERGED\"
+    cmd = vim -f -c 'set diffopt+=iwhite' -c \"Gdiff\" \"$MERGED\"
 [credential]
-  helper = cache
+    helper = cache
 [core]
-  editor = vim
-	pager = less -F -X
-	excludesfile = /Users/ekao/.gitignore_global
+    editor = vim
+    pager = less -F -X
+    excludesfile = /Users/ekao/.gitignore_global
 [branch]
-  autosetuprebase = always
+    autosetuprebase = always
 [diff "localizablestrings"]
-  textconv = "iconv -f utf-16 -t utf-8"
+    textconv = "iconv -f utf-16 -t utf-8"
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [commit]
-  template = /Users/ekao/.stCommitMsg
+    template = /Users/ekao/.stCommitMsg
