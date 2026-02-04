@@ -1,3 +1,10 @@
 printJson() {
   echo $1 | python -mjson.tool
 }
+
+rp() {
+  local main_branch="$1"
+  local current_branch=$(git branch --show-current)
+
+  git rebase "$main_branch" && git push origin "$current_branch" -f
+}

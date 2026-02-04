@@ -2,6 +2,10 @@
 
 ----------------------- Move Windows ---------------------------------
 
+hs.hotkey.bind({"cmd", "alt"}, "N", function()
+  hs.window.switcher:next()
+end)
+
 -- focus window to full screen
 hs.hotkey.bind({"cmd", "alt"}, "F", function()
   local win = hs.window.focusedWindow()
