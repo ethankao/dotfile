@@ -16,6 +16,10 @@ ln -s $BASEDIR/vim/xvimrc ~/.xvimrc
 ln -s $BASEDIR/git/gitconfig ~/.gitconfig
 # ln -s $BASEDIR/tmux/tmux.config ~/.tmux.config
 
+# oh-my-zsh custom theme (must go under custom/ so omz updates don't clobber it)
+mkdir -p ~/.oh-my-zsh/custom/themes
+ln -sf $BASEDIR/zsh/intheloop.zsh-theme ~/.oh-my-zsh/custom/themes/intheloop.zsh-theme
+
 # keyboard repeat rate.
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write com.apple.Accessibility KeyRepeatDelay 0.166666666

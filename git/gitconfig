@@ -35,16 +35,10 @@
 [core]
     editor = vim
     pager = less -F -X
-    excludesfile = /Users/ekao/.gitignore_global
-[branch]
-    autosetuprebase = always
-[diff "localizablestrings"]
-    textconv = "iconv -f utf-16 -t utf-8"
-[difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
-[mergetool "sourcetree"]
-    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
-[commit]
-    template = /Users/ekao/.stCommitMsg
+    excludesfile = ~/.gitignore_global
+    template = ~/.stCommitMsg
+[mergetool]
+    keepBackup = false
+    # Machine-local overrides (untracked); later includes win over settings above.
+[include]
+    path = ~/.gitconfig.local

@@ -1,5 +1,12 @@
 set nocompatible
 
+" cmux/Ghostty resets the keyboard protocol on focus/surface changes (e.g. when
+" opening a file), which desyncs modifyOtherKeys and broke <C-p> (FZF). vim's
+" 'keyprotocol' option doesn't retroactively clear t_TI/t_TE, so clear them
+" directly: vim never sends the modifyOtherKeys enable (CSI>4;2m) and Ctrl- keys
+" always arrive as stable legacy bytes.
+set t_TI= t_TE=
+
 let g:python3_host_prog = expand('/usr/local/bin/python3')
 
 so ~/.vimrc.plugins
@@ -15,8 +22,8 @@ filetype plugin indent on     " required!
 set hlsearch
 " no tab
 set expandtab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 set noshowmatch " show matching brackets
 " no wrap
 set textwidth=0

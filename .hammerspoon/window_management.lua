@@ -9,6 +9,7 @@ end)
 -- focus window to full screen
 hs.hotkey.bind({"cmd", "alt"}, "F", function()
   local win = hs.window.focusedWindow()
+  if not win then return end
   win:maximize()
 end)
 
@@ -16,6 +17,7 @@ end)
 hs.hotkey.bind({"cmd", "alt"}, "C", function()
   --hs.alert.show("Center")
   local win = hs.window.focusedWindow()
+  if not win then return end
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
@@ -30,6 +32,7 @@ end)
 -- focus window to the left half
 hs.hotkey.bind({"cmd", "alt"}, "H", function()
   local win = hs.window.focusedWindow()
+  if not win then return end
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
@@ -44,6 +47,7 @@ end)
 -- focus window to the bottom half
 hs.hotkey.bind({"cmd", "alt"}, "J", function()
   local win = hs.window.focusedWindow()
+  if not win then return end
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
@@ -58,6 +62,7 @@ end)
 -- focus window to the top half
 hs.hotkey.bind({"cmd", "alt"}, "K", function()
   local win = hs.window.focusedWindow()
+  if not win then return end
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
@@ -72,6 +77,7 @@ end)
 -- focus window to the right half
 hs.hotkey.bind({"cmd", "alt"}, "L", function()
   local win = hs.window.focusedWindow()
+  if not win then return end
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
@@ -84,16 +90,28 @@ hs.hotkey.bind({"cmd", "alt"}, "L", function()
 end)
 
 ----------------------- Moving Windows ---------------------------------
+local function otherScreen(currentScreen)
+  local currentId = currentScreen:id()
+  for _, s in ipairs(hs.screen.allScreens()) do
+    if s:id() ~= currentId then return s end
+  end
+  return nil
+end
+
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "H", function()
   local win = hs.window.focusedWindow()
-  win:moveOneScreenWest()
-  win:maximize()
+  if not win then return end
+  local dest = otherScreen(win:screen())
+  if not dest then return end
+  win:setFrame(dest:frame())
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
   local win = hs.window.focusedWindow()
-  win:moveOneScreenEast()
-  win:maximize()
+  if not win then return end
+  local dest = otherScreen(win:screen())
+  if not dest then return end
+  win:setFrame(dest:frame())
 end)
 
 ----------------------- Risize Windows ---------------------------------
