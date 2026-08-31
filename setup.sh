@@ -16,6 +16,13 @@ ln -s $BASEDIR/vim/xvimrc ~/.xvimrc
 ln -s $BASEDIR/git/gitconfig ~/.gitconfig
 # ln -s $BASEDIR/tmux/tmux.config ~/.tmux.config
 
+# cmux + ghostty (XDG config, and the helpers cmux.json points its actions at)
+mkdir -p ~/.config/cmux ~/.config/ghostty ~/.local/bin
+ln -sfn $BASEDIR/cmux/cmux.json ~/.config/cmux/cmux.json
+ln -sfn $BASEDIR/cmux/bin/cmux-open-file ~/.local/bin/cmux-open-file
+ln -sfn $BASEDIR/cmux/bin/cmux-radar-open ~/.local/bin/cmux-radar-open
+ln -sfn $BASEDIR/ghostty/config ~/.config/ghostty/config
+
 # oh-my-zsh custom theme (must go under custom/ so omz updates don't clobber it)
 mkdir -p ~/.oh-my-zsh/custom/themes
 ln -sf $BASEDIR/zsh/intheloop.zsh-theme ~/.oh-my-zsh/custom/themes/intheloop.zsh-theme

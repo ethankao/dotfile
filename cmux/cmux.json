@@ -1,0 +1,109 @@
+{
+  "$schema" : "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "actions" : {
+    "radar.openSelection" : {
+      "command" : "\"$HOME/.local/bin/cmux-radar-open\"",
+      "icon" : {
+        "name" : "ladybug",
+        "type" : "symbol"
+      },
+      "keywords" : [
+        "radar",
+        "rdar"
+      ],
+      "shortcut" : "cmd+shift+x",
+      "subtitle" : "Open the copied radar number in Radar.app",
+      "target" : "newTabInCurrentPane",
+      "title" : "Open Radar from Selection",
+      "type" : "command"
+    }
+  },
+  "app" : {
+    "openSupportedFilesInCmux" : false,
+    "preferredEditor" : "cmux-open-file"
+  },
+  "customSidebars" : {
+    "renderer" : "inProcess"
+  },
+  "fileExplorer" : {
+    "doubleClickAction" : "preferredEditor"
+  },
+  "schemaVersion" : 1,
+  "shortcuts" : {
+    "bindings" : {
+      "commandPaletteNext" : {
+        "first" : {
+          "command" : false,
+          "control" : false,
+          "key" : "",
+          "option" : false,
+          "shift" : false
+        }
+      },
+      "commandPalettePrevious" : {
+        "first" : {
+          "command" : false,
+          "control" : false,
+          "key" : "",
+          "option" : false,
+          "shift" : false
+        }
+      },
+      "selectSurfaceByNumber" : {
+        "first" : {
+          "command" : false,
+          "control" : false,
+          "key" : "1",
+          "keyCode" : 19,
+          "option" : true,
+          "shift" : false
+        }
+      },
+      "switchRightSidebarToDock" : {
+        "first" : {
+          "command" : false,
+          "control" : false,
+          "key" : "",
+          "option" : false,
+          "shift" : false
+        }
+      },
+      "switchRightSidebarToFeed" : {
+        "first" : {
+          "command" : false,
+          "control" : false,
+          "key" : "",
+          "option" : false,
+          "shift" : false
+        }
+      },
+      "switchRightSidebarToFiles" : {
+        "first" : {
+          "command" : false,
+          "control" : false,
+          "key" : "",
+          "option" : false,
+          "shift" : false
+        }
+      },
+      "switchRightSidebarToFind" : {
+        "first" : {
+          "command" : false,
+          "control" : false,
+          "key" : "",
+          "option" : false,
+          "shift" : false
+        }
+      },
+      "switchRightSidebarToSessions" : {
+        "first" : {
+          "command" : false,
+          "control" : false,
+          "key" : "",
+          "option" : false,
+          "shift" : false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+#!/bin/bash
+# cmux "Open Files With" handler.
+# JSON goes to vim in a new cmux workspace; everything else falls back to
+# cmux's built-in preview so the rest of the app behaves as before.
+set -u
+
+cmux="${CMUX_BUNDLED_CLI_PATH:-/Applications/cmux.app/Contents/Resources/bin/cmux}"
+export CMUX_QUIET=1
+
+for f in "$@"; do
+    case "$f" in
+    *.json | *.jsonc | *.json5 | *.geojson)
+        "$cmux" new-workspace \
+            --name "vim $(basename "$f")" \
+            --cwd "$(dirname "$f")" \
+            --command "vim $(printf '%q' "$f")" \
+            --focus true
+        ;;
+    *)
+        "$cmux" open "$f"
+        ;;
+    esac
+done

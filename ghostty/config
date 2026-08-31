@@ -1,0 +1,15 @@
+# Smoothness test for the 109 PPI ultrawide. VIEW THIS ON THE ULTRAWIDE —
+# on the 255 PPI laptop these settings are the wrong choice and will look heavy,
+# which is exactly what iTerm2 avoids by disabling thin strokes only on non-Retina.
+
+# Stem darkening, the macOS equivalent of iTerm2 turning thin strokes OFF.
+# strength is 0-255 and DEFAULTS TO 255 (maximum) — that was the "too thick".
+font-thicken = true
+font-thicken-strength = 40
+
+# Removes the dark fringing around glyph edges. macOS defaults to `native`;
+# every other platform defaults to this. Most visible at low DPI.
+alpha-blending = linear-corrected
+
+# Don't move the shell cursor toward the mouse position on click.
+cursor-click-to-move = false

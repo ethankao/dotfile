@@ -26,6 +26,13 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export EDITOR=vim
 
+# Personal bin. cmux resolves app.preferredEditor off PATH, so this has to be
+# set here rather than relying on it being inherited from the environment.
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!{.git,Build,DerivedData}/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
