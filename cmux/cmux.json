@@ -20,7 +20,8 @@
   },
   "app" : {
     "openSupportedFilesInCmux" : false,
-    "preferredEditor" : "cmux-open-file"
+    "preferredEditor" : "cmux-open-file",
+    "reorderOnNotification" : false
   },
   "customSidebars" : {
     "renderer" : "inProcess"
@@ -105,5 +106,8 @@
         }
       }
     }
+  },
+  "terminal" : {
+    "copyOnSelect" : true
   }
 }
