@@ -23,6 +23,9 @@ ln -sfn $BASEDIR/cmux/bin/cmux-open-file ~/.local/bin/cmux-open-file
 ln -sfn $BASEDIR/cmux/bin/cmux-radar-open ~/.local/bin/cmux-radar-open
 ln -sfn $BASEDIR/ghostty/config ~/.config/ghostty/config
 
+# personal commands on PATH (zshrc puts ~/.local/bin first)
+ln -sfn $BASEDIR/bin/wt ~/.local/bin/wt
+
 # oh-my-zsh custom theme (must go under custom/ so omz updates don't clobber it)
 mkdir -p ~/.oh-my-zsh/custom/themes
 ln -sf $BASEDIR/zsh/intheloop.zsh-theme ~/.oh-my-zsh/custom/themes/intheloop.zsh-theme

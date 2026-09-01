@@ -1,0 +1,64 @@
+#!/bin/zsh
+# wt <name> [prompt…]   create ~/.wt/<name> worktree, open Claude in a cmux workspace named <name>
+# wt --list | -ls        list worktrees
+# wt --delete | -d <name>  remove ~/.wt/<name> and its branch
+emulate -L zsh
+setopt err_exit no_unset pipefail
+
+case ${1-} in
+  --list|-ls|-l)
+    git worktree list
+    exit 0
+    ;;
+  --delete|-d|--rm)
+    [[ -n ${2-} ]] || { print -u2 "usage: wt --delete <name>"; exit 1 }
+    name=$2
+    wt_path=$HOME/.wt/$name
+    branch=user/${HOME:t}/$name
+    [[ -d $wt_path ]] || { print -u2 "wt: no worktree at $wt_path"; exit 1 }
+    git worktree remove --force "$wt_path"
+    git worktree prune
+    git branch -D "$branch" 2>/dev/null || print -- "kept branch $branch"
+    print -- "removed $wt_path"
+    exit 0
+    ;;
+esac
+
+[[ -n ${1-} ]] || { print -u2 "usage: wt <name> [prompt…] | wt --list | wt --delete <name>"; exit 1 }
+
+name=$1; shift
+wt_path=$HOME/.wt/$name
+branch=user/${HOME:t}/$name
+
+if [[ ! -d $wt_path ]]; then
+  gitdir=$(git rev-parse --path-format=absolute --git-common-dir)
+  root=${gitdir:h}
+  if git show-ref --verify --quiet "refs/heads/$branch"; then
+    git worktree add "$wt_path" "$branch"
+  else
+    git worktree add -b "$branch" "$wt_path" HEAD
+  fi
+  [[ -f $root/.claude/settings.local.json ]] &&
+    cp "$root/.claude/settings.local.json" "$wt_path/.claude/settings.local.json"
+fi
+
+cmd="claude"
+(( $# )) && cmd+=" ${(q)*}"
+
+export CMUX_QUIET=1
+window=()
+w=$(cmux current-window 2>/dev/null) || w=""
+[[ -n $w ]] && window=(--window "$w")
+
+existing=$(cmux workspace list --json $window 2>/dev/null |
+  jq -r --arg n "$name" --arg d "$wt_path" \
+    'first(.workspaces[] | select(.custom_title == $n or .current_directory == $d) | .ref) // empty') || existing=""
+
+if [[ -n $existing ]]; then
+  cmux workspace select "$existing" $window >/dev/null
+else
+  cmux workspace create --name "$name" --cwd "$wt_path" --command "$cmd" --focus true $window >/dev/null ||
+    { print -u2 "wt: cmux unavailable; run: cd ${(q)wt_path} && $cmd"; exit 1 }
+fi
+
+print -- "$wt_path  ($branch)"
