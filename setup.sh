@@ -23,6 +23,10 @@ ln -sfn $BASEDIR/cmux/bin/cmux-open-file ~/.local/bin/cmux-open-file
 ln -sfn $BASEDIR/cmux/bin/cmux-radar-open ~/.local/bin/cmux-radar-open
 ln -sfn $BASEDIR/ghostty/config ~/.config/ghostty/config
 
+# Build ~/Applications/Open in cmux.app and make it the macOS default app for
+# .json, so Finder / `open foo.json` routes through cmux-open-file into vim.
+$BASEDIR/cmux/bin/install-open-in-cmux
+
 # personal commands on PATH (zshrc puts ~/.local/bin first)
 ln -sfn $BASEDIR/bin/wt ~/.local/bin/wt
 

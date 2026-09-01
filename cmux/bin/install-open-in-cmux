@@ -1,0 +1,42 @@
+#!/bin/bash
+# Build the "Open in cmux" droplet and make it the macOS default app for JSON.
+#
+# Finder double-click / `open foo.json` -> this droplet -> ~/.local/bin/cmux-open-file
+# -> vim in a new cmux workspace. Safe to re-run; it rebuilds the app in place.
+set -euo pipefail
+
+BASEDIR=$( cd "$( dirname "$0" )/.." && pwd )
+APP="$HOME/Applications/Open in cmux.app"
+BUNDLE_ID="com.ekao.open-in-cmux"
+LSREGISTER=/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister
+
+mkdir -p "$HOME/Applications"
+rm -rf "$APP"
+osacompile -o "$APP" "$BASEDIR/open-in-cmux.applescript"
+
+plist="$APP/Contents/Info.plist"
+plutil -replace CFBundleIdentifier -string "$BUNDLE_ID" "$plist"
+plutil -replace CFBundleName -string "Open in cmux" "$plist"
+plutil -replace LSUIElement -bool true "$plist"
+plutil -replace CFBundleDocumentTypes -json '[
+  { "CFBundleTypeName": "JSON",
+    "CFBundleTypeRole": "Editor",
+    "LSHandlerRank": "Alternate",
+    "LSItemContentTypes": ["public.json"] },
+  { "CFBundleTypeName": "Any",
+    "CFBundleTypeRole": "Viewer",
+    "LSHandlerRank": "None",
+    "CFBundleTypeExtensions": ["*"] }
+]' "$plist"
+
+# Editing Info.plist invalidates osacompile's ad-hoc signature; re-sign.
+codesign --force --sign - "$APP"
+"$LSREGISTER" -f "$APP"
+
+# Point the system default for JSON at the droplet (this is what duti does).
+if xcrun --find swift >/dev/null 2>&1; then
+	swift "$BASEDIR/bin/set-default-app.swift" public.json "$BUNDLE_ID"
+else
+	echo "install-open-in-cmux: no Swift toolchain (xcode-select --install), skipping default-app step." >&2
+	echo "  Set it by hand: Finder > any .json > Get Info > Open with > Open in cmux > Change All." >&2
+fi
