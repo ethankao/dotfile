@@ -32,79 +32,14 @@
   "schemaVersion" : 1,
   "shortcuts" : {
     "bindings" : {
-      "commandPaletteNext" : {
-        "first" : {
-          "command" : false,
-          "control" : false,
-          "key" : "",
-          "option" : false,
-          "shift" : false
-        }
-      },
-      "commandPalettePrevious" : {
-        "first" : {
-          "command" : false,
-          "control" : false,
-          "key" : "",
-          "option" : false,
-          "shift" : false
-        }
-      },
-      "selectSurfaceByNumber" : {
-        "first" : {
-          "command" : false,
-          "control" : false,
-          "key" : "1",
-          "keyCode" : 19,
-          "option" : true,
-          "shift" : false
-        }
-      },
-      "switchRightSidebarToDock" : {
-        "first" : {
-          "command" : false,
-          "control" : false,
-          "key" : "",
-          "option" : false,
-          "shift" : false
-        }
-      },
-      "switchRightSidebarToFeed" : {
-        "first" : {
-          "command" : false,
-          "control" : false,
-          "key" : "",
-          "option" : false,
-          "shift" : false
-        }
-      },
-      "switchRightSidebarToFiles" : {
-        "first" : {
-          "command" : false,
-          "control" : false,
-          "key" : "",
-          "option" : false,
-          "shift" : false
-        }
-      },
-      "switchRightSidebarToFind" : {
-        "first" : {
-          "command" : false,
-          "control" : false,
-          "key" : "",
-          "option" : false,
-          "shift" : false
-        }
-      },
-      "switchRightSidebarToSessions" : {
-        "first" : {
-          "command" : false,
-          "control" : false,
-          "key" : "",
-          "option" : false,
-          "shift" : false
-        }
-      }
+      "commandPaletteNext" : null,
+      "commandPalettePrevious" : null,
+      "reopenPreviousSession" : null,
+      "switchRightSidebarToDock" : null,
+      "switchRightSidebarToFeed" : null,
+      "switchRightSidebarToFiles" : null,
+      "switchRightSidebarToFind" : null,
+      "switchRightSidebarToSessions" : null
     }
   },
   "terminal" : {

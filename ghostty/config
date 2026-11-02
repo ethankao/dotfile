@@ -13,3 +13,4 @@ alpha-blending = linear-corrected
 
 # Don't move the shell cursor toward the mouse position on click.
 cursor-click-to-move = false
+mouse-reporting = false

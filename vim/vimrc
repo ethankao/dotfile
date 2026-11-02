@@ -42,6 +42,11 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 set clipboard=unnamed
 
+" keep swap/backup/undo files out of source folders (Xcode synchronized folders pick them up)
+set directory=~/.vim/swap//
+set backupdir=~/.vim/backup//
+set undodir=~/.vim/undo//
+
 " Short Cuts
 " Jump Between Errors
 " Replace command
