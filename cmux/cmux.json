@@ -29,6 +29,11 @@
   "fileExplorer" : {
     "doubleClickAction" : "preferredEditor"
   },
+  "remoteTmux" : {
+    "beta" : {
+      "enabled" : true
+    }
+  },
   "schemaVersion" : 1,
   "shortcuts" : {
     "bindings" : {
