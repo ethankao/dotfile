@@ -43,9 +43,13 @@ autocmd BufWritePre * :%s/\s\+$//e
 set clipboard=unnamed
 
 " keep swap/backup/undo files out of source folders (Xcode synchronized folders pick them up)
-set directory=~/.vim/swap//
-set backupdir=~/.vim/backup//
-set undodir=~/.vim/undo//
+set directory=~/.vim/swap/
+set backupdir=~/.vim/backup/
+set undodir=~/.vim/undo/
+" vim won't create these itself; a missing backupdir makes every :w fail with E510
+for s:dir in ['swap', 'backup', 'undo']
+  call mkdir(expand('~/.vim/' . s:dir), 'p')
+endfor
 
 " Short Cuts
 " Jump Between Errors

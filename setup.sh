@@ -4,16 +4,16 @@ BASEDIR=$( cd "$( dirname "$0" )" && pwd )
 
 echo $BASEDIR
 
-ln -s $BASEDIR/zsh/zshrc ~/.zshrc
-ln -s $BASEDIR/zsh/zsh_alias ~/.zsh_alias
-ln -s $BASEDIR/zsh/zsh_functions ~/.zsh_functions
-mkdir ~/.hammerspoon
-ln -s $BASEDIR/.hammerspoon/init.lua ~/.hammerspoon/init.lua
-ln -s $BASEDIR/.hammerspoon/window_management.lua ~/.hammerspoon/window_management.lua
-ln -s $BASEDIR/vim/vimrc ~/.vimrc
-ln -s $BASEDIR/vim/vimrc.plugins ~/.vimrc.plugins
-ln -s $BASEDIR/vim/xvimrc ~/.xvimrc
-ln -s $BASEDIR/git/gitconfig ~/.gitconfig
+ln -sfn $BASEDIR/zsh/zshrc ~/.zshrc
+ln -sfn $BASEDIR/zsh/zsh_alias ~/.zsh_alias
+ln -sfn $BASEDIR/zsh/zsh_functions ~/.zsh_functions
+mkdir -p ~/.hammerspoon
+ln -sfn $BASEDIR/.hammerspoon/init.lua ~/.hammerspoon/init.lua
+ln -sfn $BASEDIR/.hammerspoon/window_management.lua ~/.hammerspoon/window_management.lua
+ln -sfn $BASEDIR/vim/vimrc ~/.vimrc
+ln -sfn $BASEDIR/vim/vimrc.plugins ~/.vimrc.plugins
+ln -sfn $BASEDIR/vim/xvimrc ~/.xvimrc
+ln -sfn $BASEDIR/git/gitconfig ~/.gitconfig
 # ln -s $BASEDIR/tmux/tmux.config ~/.tmux.config
 
 # cmux + ghostty (XDG config, and the helpers cmux.json points its actions at)
